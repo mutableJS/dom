@@ -11,6 +11,10 @@
 		"node": "~17.1.0"
 	},
 	"author": "Nikita 'donnikitos' Nitichevski <me@donnikitos.com> (https://donnikitos.com/)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mutableJS/dom"
+	},
 	"license": "MIT",
 	"devDependencies": {
 		"@types/events": "^3.0.0",
