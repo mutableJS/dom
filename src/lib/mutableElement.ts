@@ -1,4 +1,4 @@
-import { isMutable, MaybeMutable } from './mutable';
+import { isMutable, MaybeMutable } from '@mutablejs/core';
 
 type AllTags = keyof HTMLElementTagNameMap;
 

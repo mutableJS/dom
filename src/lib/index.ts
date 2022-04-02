@@ -1,3 +1,3 @@
-export * from './mutable';
-export * from './mutableFn';
-export * from './mutableElement';
+import mutableElement from './mutableElement';
+
+export default mutableElement;
