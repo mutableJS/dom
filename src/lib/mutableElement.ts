@@ -30,7 +30,7 @@ function maybeMutableCallback<Data>(
 	}
 }
 
-function mutableElement<Tag extends AllTags, Props extends MutableProps<Tag>>(
+export function mutableElement<Tag extends AllTags, Props extends MutableProps<Tag>>(
 	tag: Tag,
 	props?: Props,
 ) {
