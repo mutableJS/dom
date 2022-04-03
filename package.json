@@ -23,9 +23,6 @@
 		"build": "npx vite build && npx tsc --emitDeclarationOnly",
 		"prepack": "npm run build"
 	},
-	"engines": {
-		"node": "~17.1.0"
-	},
 	"author": "Nikita 'donnikitos' Nitichevski <me@donnikitos.com> (https://donnikitos.com/)",
 	"repository": {
 		"type": "git",
