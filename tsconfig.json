@@ -11,7 +11,8 @@
 		"lib": ["ESNext", "DOM"],
 		"outDir": "dist",
 		"target": "ESNext",
-		"types": ["node"]
+		"types": ["node"],
+		"noErrorTruncation": true
 	},
 	"include": ["src/lib/index.ts"],
 	"exclude": ["dist", "node_modules"]
