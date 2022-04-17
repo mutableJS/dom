@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@mutablejs/core@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@mutablejs/core/-/core-0.1.1.tgz#163c56e55ed218ccab8bcbf6a57fc18da39878c6"
-  integrity sha512-c3cp39dSaU0Yjq4uwrX2dApY9k0WKND8M0YyH0WQvRCvjz8AB5QRdySpeQPHsjbj6xojkUxdu+fhhdPbY7LAvw==
+"@mutablejs/core@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@mutablejs/core/-/core-0.1.3.tgz#d51b9de61268caf497338325e1c10c979f541636"
+  integrity sha512-+MMoNqYljMO2Vxs/jv/22gQPMHqN1DqGUVGiIUkj47/F+Qxgzq3uDS1lekHFxn0/gI8j8Mmnci3Rpj1R7C5Aow==
   dependencies:
     events "^3.3.0"
 
@@ -213,10 +213,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-typescript@^4.5.5:
-  version "4.5.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
-  integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
+typescript@^4.6.3:
+  version "4.6.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
+  integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
 
 vite@^2.8.4:
   version "2.8.4"

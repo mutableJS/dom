@@ -31,10 +31,10 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^17.0.23",
-		"typescript": "^4.5.5",
+		"typescript": "^4.6.3",
 		"vite": "^2.8.4"
 	},
 	"dependencies": {
-		"@mutablejs/core": "^0.1.1"
+		"@mutablejs/core": "^0.1.3"
 	}
 }
