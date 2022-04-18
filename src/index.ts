@@ -1,5 +1,5 @@
 import mutable, { mutableFn } from '@mutablejs/core';
-import mutableElement from './lib';
+import mutableElement from './lib/mutableElement';
 
 //	App root
 const root = document.getElementById('root');
@@ -15,7 +15,7 @@ const todoCount = mutableFn(({ todos }: { todos: string[] }) => [
 const children = mutableFn(({ todos: items }: { todos: string[] }) =>
 	items.map((item, i) =>
 		mutableElement('li', {
-			innerText: item,
+			children: item,
 			style: 'cursor: no-drop; user-select: none;',
 			onclick: () => {
 				todos.value.splice(i, 1);
@@ -24,28 +24,72 @@ const children = mutableFn(({ todos: items }: { todos: string[] }) =>
 	),
 );
 
+mutableElement('input', { type: 'email', value: '' });
+
 //	Add elements to app
 root?.append(
-	mutableElement('div', {
-		children: todoCount({ todos }),
-	}),
-	mutableElement('input', {
-		children: input,
-		onchange: (event) => {
-			if (event.target instanceof HTMLInputElement) {
-				input.value = event.target.value;
-			}
-		},
-	}),
-	mutableElement('button', {
-		innerText: 'Add todo',
-		onclick() {
-			todos.value.push(input.value);
+	mutableElement(
+		'form',
+		{
+			onsubmit(event) {
+				event.preventDefault();
 
-			input.value = '';
+				todos.value.push(input.value);
+
+				input.value = '';
+			},
 		},
-	}),
-	mutableElement('ul', {
-		children: children({ todos }),
-	}),
+		[
+			mutableElement(
+				'div',
+				{
+					style: {
+						height: '10px',
+						border: '1px solid #ccc',
+					},
+					class: input,
+				},
+				mutableElement('div', {
+					style: {
+						width: mutableFn(
+							({ todos }: { todos: string[] }) =>
+								todos.length + '%',
+						)({ todos }),
+						height: '100%',
+						backgroundColor: '#ccc',
+					},
+				}),
+			),
+			mutableElement(
+				'div',
+				{
+					onclick: (event) =>
+						(input.value = event.clientX + ' - ' + event.clientY),
+				},
+				todoCount({ todos }),
+			),
+			mutableElement('input', {
+				type: 'text',
+				value: input,
+				onkeyup: (event) => {
+					if (event.target instanceof HTMLInputElement) {
+						input.value = event.target.value;
+					}
+				},
+			}),
+			mutableElement('button', {
+				children: 'Add todo',
+			}),
+			mutableElement('ul', {}, children({ todos })),
+			mutableElement('input', {
+				type: 'text',
+				value: '',
+				oninput: (event) => {
+					if (event.target instanceof HTMLInputElement) {
+						input.value = event.target.value;
+					}
+				},
+			}),
+		],
+	),
 );
