@@ -15,6 +15,10 @@ In theory it can, but it is kinda pointless, since it's reactivity depends on th
 
 At the current stage mutableJS is just a proof of concept and no real life projects exist yet.
 
+#### Demo?
+
+Sure, there is a demo app with super simple code available. Be sure to clone and play with our [mutableJS / Demo repository](https://github.com/mutableJS/demo)!
+
 ## Installation
 
 Install with **npm**:
@@ -44,19 +48,20 @@ const makeText = mutableFn(
 );
 
 root?.append(
-	mutableElement('button', {
-		innerText: makeText({ pre: 'Clicks', count }),
-		onclick() {
-			count.value++;
+	mutableElement(
+		'button',
+		{
+			onclick() {
+				count.value++;
+			},
 		},
-	}),
-	mutableElement('div', {
-		innerText: makeText({ pre: 'Clicks made', count }),
-	}),
+		makeText({ pre: 'Clicks', count }),
+	),
+	mutableElement('div', {}, makeText({ pre: 'Clicks made', count })),
 );
 ```
 
-Additional Todo demo in our [demo repository](https://github.com/mutableJS/demo)
+More complex todo-app demo in our [demo repository](https://github.com/mutableJS/demo).
 
 ## Authors
 

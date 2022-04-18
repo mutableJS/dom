@@ -1,10 +1,12 @@
 {
 	"name": "@mutablejs/dom",
-	"version": "0.0.1",
+	"version": "0.1.1",
 	"description": "Reactive DOM elements, based on mutableJS's state",
 	"keywords": [
 		"mutable DOM",
-		"reactive DOM"
+		"reactive DOM",
+		"dynamic DOM",
+		"DOM manipulation"
 	],
 	"files": [
 		"dist"
