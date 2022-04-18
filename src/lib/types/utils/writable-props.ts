@@ -1,4 +1,4 @@
-import IfElse from './if-else';
+import { IfElse } from './if-else';
 
 export type WritableProps<Obj> = {
 	[Prop in keyof Obj]: IfElse<
@@ -9,5 +9,3 @@ export type WritableProps<Obj> = {
 		Prop
 	>;
 }[keyof Obj];
-
-export default WritableProps;

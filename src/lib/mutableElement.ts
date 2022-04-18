@@ -5,7 +5,7 @@ import WithChildren from './types/mutableElements/with/children';
 
 const childless = Symbol('childless');
 
-function mutableElement<Tag extends keyof MutableElements>(
+export function mutableElement<Tag extends keyof MutableElements>(
 	tag: Tag,
 	props: MutableElementProps<
 		MutableElements[Tag] & Partial<GlobalEventHandlers>

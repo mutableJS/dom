@@ -1,5 +1,5 @@
 import mutable, { mutableFn } from '@mutablejs/core';
-import mutableElement from './lib/mutableElement';
+import mutableElement from './lib';
 
 //	App root
 const root = document.getElementById('root');
