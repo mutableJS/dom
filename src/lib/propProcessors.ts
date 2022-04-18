@@ -12,11 +12,16 @@ function propProcessors<Tag extends keyof HTMLElementTagNameMap>(
 	element: HTMLElementTagNameMap[Tag],
 ) {
 	return {
-		children(data: Node | Node[] | string | string[] | null) {
-			data &&
+		children(data: Node | Node[] | string | string[] | null | undefined) {
+			if (data) {
 				element.replaceChildren(
 					...(Array.isArray(data) ? data : [data]),
 				);
+			} else {
+				while (element.firstChild) {
+					element.removeChild(element.firstChild);
+				}
+			}
 		},
 		value(data: string) {
 			if (
