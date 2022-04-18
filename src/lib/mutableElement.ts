@@ -1,81 +1,54 @@
-import { isMutable, MaybeMutable } from '@mutablejs/core';
+import { MaybeMutable, processMaybeMutable } from '@mutablejs/core';
+import propProcessors, { Processors } from './propProcessors';
+import { MutableElements, MutableElementProps } from './types';
+import WithChildren from './types/mutableElements/with/children';
 
-type AllTags = keyof HTMLElementTagNameMap;
+const childless = Symbol('childless');
 
-type MutableObject<Object> = {
-	[Key in keyof Object]?: MaybeMutable<Object[Key]>;
-};
-
-type MutableProps<Tag extends AllTags> = MutableObject<{
-	innerHTML: HTMLElementTagNameMap[Tag]['innerHTML'];
-	children: HTMLElementTagNameMap[Tag] extends HTMLInputElement
-		? string
-		: Parameters<HTMLElementTagNameMap[Tag]['replaceChildren']>;
-	innerText: string;
-	style: string | MutableObject<CSSStyleDeclaration>;
-	onclick: HTMLElement['onclick'];
-	onchange: HTMLInputElement['onkeyup'];
-}>;
-
-function maybeMutableCallback<Data>(
-	data: MaybeMutable<Data>,
-	callback: (data: Data) => void,
-) {
-	if (isMutable(data)) {
-		callback(data.value);
-
-		data.onChange(callback);
-	} else {
-		callback(data);
-	}
-}
-
-export function mutableElement<Tag extends AllTags, Props extends MutableProps<Tag>>(
+function mutableElement<Tag extends keyof MutableElements>(
 	tag: Tag,
-	props?: Props,
+	props: MutableElementProps<
+		MutableElements[Tag] & Partial<GlobalEventHandlers>
+	>,
+	children: MutableElements[Tag] extends WithChildren
+		? MaybeMutable<MutableElements[Tag]['children']> | typeof childless
+		: typeof childless = childless,
 ) {
-	type ElementKeys = keyof HTMLElementTagNameMap[Tag];
-
 	const element = document.createElement(tag);
 
-	if (props) {
-		props.innerHTML &&
-			maybeMutableCallback(props.innerHTML, (data) => {
-				element.innerHTML = data;
-			});
+	const processors = propProcessors(element);
 
-		props.children &&
-			maybeMutableCallback(props.children, (data) => {
-				if (element instanceof HTMLInputElement) {
-					element.value = data.toString();
-				} else {
-					element.replaceChildren(...data);
-				}
-			});
+	Object.entries(props).forEach(([propName, propValue]) => {
+		type PropValue = typeof propValue;
 
-		props.innerText &&
-			maybeMutableCallback(props.innerText, (data) => {
-				element.innerText = data;
-			});
+		// Handle special cases
+		if (processors.hasOwnProperty(propName)) {
+			if (propName === 'value') {
+				processMaybeMutable(processors.value)(propValue);
+			} else {
+				processMaybeMutable(processors[propName as keyof Processors])(
+					propValue,
+				);
+			}
+		}
 
-		props.style &&
-			maybeMutableCallback(props.style, (data) => {
-				if (typeof data === 'string') {
-					element.setAttribute('style', data);
-				} else {
-					// element.setAttribute('style', data);
-				}
-			});
+		// Handle events
+		else if (propName.startsWith('on')) {
+			processMaybeMutable((action: PropValue) => {
+				element[propName as keyof typeof element] = action;
+			})(propValue);
+		}
 
-		props.onclick &&
-			maybeMutableCallback(props.onclick, (data) => {
-				element.onclick = data;
-			});
+		// Set everything else as attributes
+		else {
+			processMaybeMutable((value: PropValue) => {
+				element.setAttribute(propName, value);
+			})(propValue);
+		}
+	});
 
-		props.onchange &&
-			maybeMutableCallback(props.onchange, (data) => {
-				element.onkeyup = data;
-			});
+	if (children !== childless) {
+		processMaybeMutable(processors.children)(children);
 	}
 
 	return element;
