@@ -1,7 +1,11 @@
-import { ProcessorTypes } from '../../../propProcessors';
+export type VisibleChild = Node | string | number;
+export type SkippableChild = null | undefined;
 
 type WithChildren = {
-	children?: ProcessorTypes['children'];
+	children?:
+		| VisibleChild
+		| SkippableChild
+		| (VisibleChild | SkippableChild)[];
 };
 
 export default WithChildren;
