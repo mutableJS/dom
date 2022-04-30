@@ -1,55 +1,92 @@
 import { MaybeMutable, processMaybeMutable } from '@mutablejs/core';
-import propProcessors, { Processors } from './propProcessors';
+import propProcessors from './propProcessors';
 import { MutableElements, MutableElementProps } from './types';
-import WithChildren from './types/mutableElements/with/children';
-
-const childless = Symbol('childless');
+import WithChildren, {
+	VisibleChild,
+} from './types/mutableElements/with/children';
+import isChild from './utils/isChild';
 
 export function mutableElement<Tag extends keyof MutableElements>(
 	tag: Tag,
 	props: MutableElementProps<
 		MutableElements[Tag] & Partial<GlobalEventHandlers>
-	>,
-	children: MutableElements[Tag] extends WithChildren
-		? MaybeMutable<MutableElements[Tag]['children']> | typeof childless
-		: typeof childless = childless,
+	> | null,
+	...children: MutableElements[Tag] extends WithChildren
+		? MaybeMutable<MutableElements[Tag]['children']>[]
+		: never[]
 ) {
 	const element = document.createElement(tag);
 
 	const processors = propProcessors(element);
 
-	Object.entries(props).forEach(([propName, propValue]) => {
-		type PropValue = typeof propValue;
+	props &&
+		Object.entries(props).forEach(([propName, propValue]) => {
+			type PropValue = typeof propValue;
 
-		// Handle special cases
-		if (processors.hasOwnProperty(propName)) {
-			if (propName === 'value') {
-				processMaybeMutable(processors.value)(propValue);
-			} else {
-				processMaybeMutable(processors[propName as keyof Processors])(
-					propValue,
-				);
+			// Handle special cases
+			if (processors.hasOwnProperty(propName)) {
+				if (propName === 'value') {
+					processMaybeMutable(processors.value)(propValue);
+				} else {
+					processMaybeMutable((processors as any)[propName])(
+						propValue,
+					);
+				}
 			}
-		}
 
-		// Handle events
-		else if (propName.startsWith('on')) {
-			processMaybeMutable((action: PropValue) => {
-				element[propName as keyof typeof element] = action;
-			})(propValue);
-		}
+			// Handle events
+			else if (propName.startsWith('on')) {
+				processMaybeMutable((action: PropValue) => {
+					element[propName as keyof typeof element] = action;
+				})(propValue);
+			}
 
-		// Set everything else as attributes
-		else {
-			processMaybeMutable((value: PropValue) => {
-				element.setAttribute(propName, value);
-			})(propValue);
-		}
-	});
+			// Set everything else as attributes
+			else {
+				processMaybeMutable((value: PropValue) => {
+					element.setAttribute(propName, value);
+				})(propValue);
+			}
+		});
 
-	if (children !== childless) {
-		processMaybeMutable(processors.children)(children);
-	}
+	const childOffset: number[] = [];
+
+	children &&
+		children.forEach((childData, index) => {
+			processMaybeMutable((nodeData: typeof childData) => {
+				let nodes: VisibleChild[] = [];
+
+				let currentOffset = 0;
+				for (let i = 0; i < index; i++) {
+					currentOffset += childOffset[i];
+				}
+
+				if (Array.isArray(nodeData)) {
+					nodes = nodeData.filter(isChild);
+				} else if (isChild(nodeData)) {
+					nodes = [nodeData];
+				}
+
+				for (let i = 0; i < childOffset[index]; i++) {
+					const index = currentOffset;
+					const child = element.childNodes[index];
+
+					element.removeChild(child);
+				}
+				const insertBefore = element.childNodes[currentOffset];
+
+				childOffset[index] = nodes.length;
+
+				nodes.forEach((child) => {
+					const node =
+						typeof child === 'string' || typeof child === 'number'
+							? document.createTextNode(`${child}`)
+							: child;
+
+					element.insertBefore(node, insertBefore);
+				});
+			})(childData);
+		});
 
 	return element;
 }
