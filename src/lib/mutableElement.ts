@@ -21,6 +21,10 @@ export function mutableElement<Tag extends keyof MutableElements>(
 
 	props &&
 		Object.entries(props).forEach(([propName, propValue]) => {
+			if (element.hasAttribute(propName)) {
+				return;
+			}
+
 			type PropValue = typeof propValue;
 
 			// Handle special cases
@@ -44,7 +48,11 @@ export function mutableElement<Tag extends keyof MutableElements>(
 			// Set everything else as attributes
 			else {
 				processMaybeMutable((value: PropValue) => {
-					element.setAttribute(propName, value);
+					if (!value && value !== '' && value !== 0) {
+						element.removeAttribute(propName);
+					} else {
+						element.setAttribute(propName, value);
+					}
 				})(propValue);
 			}
 		});
