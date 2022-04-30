@@ -39,57 +39,54 @@ root?.append(
 				input.value = '';
 			},
 		},
-		[
-			mutableElement(
-				'div',
-				{
-					style: {
-						height: '10px',
-						border: '1px solid #ccc',
-					},
-					class: input,
+		mutableElement(
+			'div',
+			{
+				style: {
+					height: '10px',
+					border: '1px solid #ccc',
 				},
-				mutableElement('div', {
-					style: {
-						width: mutableFn(
-							({ todos }: { todos: string[] }) =>
-								todos.length + '%',
-						)({ todos }),
-						height: '100%',
-						backgroundColor: '#ccc',
-					},
-				}),
-			),
-			mutableElement(
-				'div',
-				{
-					onclick: (event) =>
-						(input.value = event.clientX + ' - ' + event.clientY),
-				},
-				todoCount({ todos }),
-			),
-			mutableElement('input', {
-				type: 'text',
-				value: input,
-				onkeyup: (event) => {
-					if (event.target instanceof HTMLInputElement) {
-						input.value = event.target.value;
-					}
+				class: input,
+			},
+			mutableElement('div', {
+				style: {
+					width: mutableFn(
+						({ todos }: { todos: string[] }) => todos.length + '%',
+					)({ todos }),
+					height: '100%',
+					backgroundColor: '#ccc',
 				},
 			}),
-			mutableElement('button', {
-				children: 'Add todo',
-			}),
-			mutableElement('ul', {}, children({ todos })),
-			mutableElement('input', {
-				type: 'text',
-				value: '',
-				oninput: (event) => {
-					if (event.target instanceof HTMLInputElement) {
-						input.value = event.target.value;
-					}
-				},
-			}),
-		],
+		),
+		mutableElement(
+			'div',
+			{
+				onclick: (event) =>
+					(input.value = event.clientX + ' - ' + event.clientY),
+			},
+			todoCount({ todos }),
+		),
+		mutableElement('input', {
+			type: 'text',
+			value: input,
+			onkeyup: (event) => {
+				if (event.target instanceof HTMLInputElement) {
+					input.value = event.target.value;
+				}
+			},
+		}),
+		mutableElement('button', {
+			children: 'Add todo',
+		}),
+		mutableElement('ul', {}, children({ todos })),
+		mutableElement('input', {
+			type: 'text',
+			value: '',
+			oninput: (event) => {
+				if (event.target instanceof HTMLInputElement) {
+					input.value = event.target.value;
+				}
+			},
+		}),
 	),
 );
