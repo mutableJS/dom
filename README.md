@@ -1,15 +1,19 @@
 # mutableJS / DOM
 
-DOM elements, brought to life by `@mutablejs/core`
+DOM elements, brought to life by [@mutableJS/core](https://www.npmjs.com/package/@mutablejs/core).
 
 [![npm](https://img.shields.io/npm/dt/@mutablejs/dom?style=for-the-badge)](https://www.npmjs.com/package/@mutablejs/dom) ![GitHub Repo stars](https://img.shields.io/github/stars/mutablejs/dom?label=GitHub%20Stars&style=for-the-badge) [![GitHub](https://img.shields.io/github/license/mutablejs/dom?color=blue&style=for-the-badge)](https://github.com/mutableJS/dom/blob/master/LICENSE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mutablejs/dom?style=for-the-badge) [![Issues](https://img.shields.io/github/issues/mutableJS/dom?style=for-the-badge)](https://github.com/mutableJS/dom/issues)
+
+> ## Now with JSX support !!!
+
+Since version 0.2.0 you can! Just check out or clone our [mutableJS / Demo repository](https://github.com/mutableJS/demo) for the correct setup. Although the lib is written in TypeScript, the type support for JSX-elements is not completely there yet.
 
 ## FAQ
 
 #### Can mutableJS / DOM be standalone?
 
-In theory it can, but it is kinda pointless, since it's reactivity depends on the input of `@mutableJS/core` activated variables.
+In theory it can, but it is kinda pointless, since it's reactivity depends on the input of [@mutableJS/core](https://www.npmjs.com/package/@mutablejs/core) activated variables.
 
 #### Is it ready to use?
 
@@ -57,7 +61,7 @@ root?.append(
 		},
 		makeText({ pre: 'Clicks', count }),
 	),
-	mutableElement('div', {}, makeText({ pre: 'Clicks made', count })),
+	mutableElement('div', null, makeText({ pre: 'Clicks made', count })),
 );
 ```
 
