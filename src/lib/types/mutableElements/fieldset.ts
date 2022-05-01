@@ -1,3 +1,4 @@
+import { Element } from '.';
 import WithChildren from './with/children';
 
 type FieldsetElement = Element & {
