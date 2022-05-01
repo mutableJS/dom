@@ -7,7 +7,7 @@ DOM elements, brought to life by [@mutableJS/core](https://www.npmjs.com/package
 
 > ## Now with JSX support !!!
 
-Since version 0.2.0 you can! Just check out or clone our [mutableJS / Demo repository](https://github.com/mutableJS/demo) for the correct setup. Although the lib is written in TypeScript, the type support for JSX-elements is not completely there yet.
+Since version 0.2.0 you can! Just check out or clone our [mutableJS / Demo repository](https://github.com/mutableJS/demo) for the correct setup. Although the lib is written in TypeScript, the type support for JSX-elements is only partially there yet.
 
 ## FAQ
 
@@ -38,6 +38,36 @@ Install with **yarn**:
 ```
 
 ## Usage/Examples
+
+**JSX JS/ TS**
+
+```typescript
+import mutable, { mutableFn } from '@mutablejs/core';
+import { mutableElement } from '@mutablejs/dom';
+
+const root = document.body;
+
+const count = mutable(0);
+
+const makeText = mutableFn(
+	({ pre, count }: { pre: string; count: number }) => `${pre}: ${count}`,
+);
+
+root?.append(
+	<div>
+		<button
+			onclick={() => {
+				count.value++;
+			}}
+		>
+			{makeText({ pre: 'Clicks', count })}
+		</button>
+		<div>{makeText({ pre: 'Clicks made', count })}</div>
+	</div>,
+);
+```
+
+**Plain JS/ TS**
 
 ```typescript
 import mutable, { mutableFn } from '@mutablejs/core';
