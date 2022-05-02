@@ -19,6 +19,7 @@ import SelectElement from './select';
 import OptionElement from './option';
 import OptionGroupElement from './option-group';
 import FieldsetElement from './fieldset';
+import TextareaElement from './textarea';
 
 export type Element = {
 	accessKey?: HTMLElement['accessKey'];
@@ -152,7 +153,7 @@ export type MutableElements = {
 	// tbody: TableSectionElement;
 	// td: TableCellElement;
 	// template: TemplateElement;
-	// textarea: TextAreaElement;
+	textarea: TextareaElement;
 	// tfoot: TableSectionElement;
 	// th: TableCellElement;
 	// thead: TableSectionElement;
