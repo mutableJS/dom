@@ -20,6 +20,8 @@ import OptionElement from './option';
 import OptionGroupElement from './option-group';
 import FieldsetElement from './fieldset';
 import TextareaElement from './textarea';
+import TableCellElement from './table-cell';
+import TableHeaderElement from './table-header';
 
 export type Element = {
 	accessKey?: HTMLElement['accessKey'];
@@ -149,17 +151,17 @@ export type MutableElements = {
 	sub: DefaultElement;
 	summary: DefaultElement;
 	sup: DefaultElement;
-	// table: TableElement;
-	// tbody: TableSectionElement;
-	// td: TableCellElement;
+	table: DefaultElement;
+	tbody: DefaultElement;
+	td: TableCellElement;
 	// template: TemplateElement;
 	textarea: TextareaElement;
-	// tfoot: TableSectionElement;
-	// th: TableCellElement;
-	// thead: TableSectionElement;
+	tfoot: DefaultElement;
+	th: TableHeaderElement;
+	thead: DefaultElement;
 	// time: TimeElement;
 	// title: TitleElement;
-	// tr: TableRowElement;
+	tr: DefaultElement;
 	// track: TrackElement;
 	u: DefaultElement;
 	ul: DefaultElement;
