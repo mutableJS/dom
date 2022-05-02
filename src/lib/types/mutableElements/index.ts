@@ -22,6 +22,7 @@ import FieldsetElement from './fieldset';
 import TextareaElement from './textarea';
 import TableCellElement from './table-cell';
 import TableHeaderElement from './table-header';
+import TableColumnElement from './table-column';
 
 export type Element = {
 	accessKey?: HTMLElement['accessKey'];
@@ -75,13 +76,13 @@ export type MutableElements = {
 	br: Element;
 	button: ButtonElement;
 	canvas: CanvasElement;
-	// caption: TableCaptionElement;
+	caption: DefaultElement;
 	cite: DefaultElement;
 	code: DefaultElement;
-	// col: TableColElement;
-	// colgroup: TableColElement;
+	col: TableColumnElement;
+	colgroup: TableColumnElement;
 	data: DataElement;
-	// datalist: DataListElement;
+	datalist: DefaultElement;
 	dd: DefaultElement;
 	del: ModElement;
 	details: DetailsElement;
@@ -118,7 +119,7 @@ export type MutableElements = {
 	main: DefaultElement;
 	// map: MapElement;
 	mark: DefaultElement;
-	// menu: MenuElement;
+	menu: DefaultElement;
 	// meta: MetaElement;
 	// meter: MeterElement;
 	nav: DefaultElement;
@@ -154,13 +155,13 @@ export type MutableElements = {
 	table: DefaultElement;
 	tbody: DefaultElement;
 	td: TableCellElement;
-	// template: TemplateElement;
+	template: DefaultElement;
 	textarea: TextareaElement;
 	tfoot: DefaultElement;
 	th: TableHeaderElement;
 	thead: DefaultElement;
 	// time: TimeElement;
-	// title: TitleElement;
+	title: DefaultElement;
 	tr: DefaultElement;
 	// track: TrackElement;
 	u: DefaultElement;
