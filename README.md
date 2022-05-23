@@ -103,4 +103,5 @@ More complex todo-app demo in our [demo repository](https://github.com/mutableJS
 
 ## Feedback
 
-If you have any feedback, please reach out to us. We are open to suggestions, ideas and collaboration.
+Any feedback? Join our [Discord server](https://discord.gg/gNdgy8uS3R) and reach out to us.\
+We are open to suggestions, ideas and collaboration.
