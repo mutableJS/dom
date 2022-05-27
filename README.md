@@ -5,9 +5,11 @@ DOM elements, brought to life by [@mutableJS/core](https://www.npmjs.com/package
 [![npm](https://img.shields.io/npm/dt/@mutablejs/dom?style=for-the-badge)](https://www.npmjs.com/package/@mutablejs/dom) ![GitHub Repo stars](https://img.shields.io/github/stars/mutablejs/dom?label=GitHub%20Stars&style=for-the-badge) [![GitHub](https://img.shields.io/github/license/mutablejs/dom?color=blue&style=for-the-badge)](https://github.com/mutableJS/dom/blob/master/LICENSE)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mutablejs/dom?style=for-the-badge) [![Issues](https://img.shields.io/github/issues/mutableJS/dom?style=for-the-badge)](https://github.com/mutableJS/dom/issues)
 
+[![Support Server](https://img.shields.io/discord/978049671110987856.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/gNdgy8uS3R)
+
 > ## Now with JSX support !!!
 
-Since version 0.2.0 you can! Just check out or clone our [mutableJS / Demo repository](https://github.com/mutableJS/demo) for the correct setup. Although the lib is written in TypeScript, the type support for JSX-elements is only partially there yet.
+Since version 0.2.0 you can! Just check out our [mutableJS / Demo repository](https://github.com/mutableJS/demo) or clone our [mutableJS / typescript-starter-template repository](https://github.com/mutableJS/template-starter-typescript) for the correct setup. Although the lib is written in TypeScript, the type support for JSX-elements is only partially supported.
 
 ## FAQ
 
@@ -17,11 +19,12 @@ In theory it can, but it is kinda pointless, since it's reactivity depends on th
 
 #### Is it ready to use?
 
-At the current stage mutableJS is just a proof of concept and no real life projects exist yet.
+At the current stage mutableJS is mostly a proof of concept... But there are already a few projects in the making.
 
 #### Demo?
 
-Sure, there is a demo app with super simple code available. Be sure to clone and play with our [mutableJS / Demo repository](https://github.com/mutableJS/demo)!
+Sure, there is a demo app with super simple code available. Be sure to clone and play with our [mutableJS / Demo repository](https://github.com/mutableJS/demo)!\
+Also we have a [mutableJS / typescript-starter-template repository](https://github.com/mutableJS/template-starter-typescript) to provide a correct project setup.
 
 ## Installation
 
