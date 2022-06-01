@@ -10,5 +10,8 @@ export default defineConfig({
 			name: '@mutablejs/dom',
 		},
 		minify: false,
+		rollupOptions: {
+			external: ['@mutablejs/core'],
+		},
 	},
 });
