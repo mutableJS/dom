@@ -13,9 +13,10 @@ Since version 0.2.0 you can! Just check out our [mutableJS / Demo repository](ht
 
 ## FAQ
 
-#### Can mutableJS / DOM be standalone?
+#### Can mutableJS / DOM be used as standalone?
 
-In theory it can, but it is kinda pointless, since it's reactivity depends on the input of [@mutableJS/core](https://www.npmjs.com/package/@mutablejs/core) activated variables.
+**Nope.**\
+Its reactivity depends on the [@mutableJS/core](https://www.npmjs.com/package/@mutablejs/core) activated variables.
 
 #### Is it ready to use?
 
@@ -31,14 +32,15 @@ Also we have a [mutableJS / typescript-starter-template repository](https://gith
 Install with **npm**:
 
 ```bash
-    npm install @mutablejs/dom
+    npm install @mutablejs/core @mutablejs/dom
 ```
 
 Install with **yarn**:
 
 ```bash
-    yarn add @mutablejs/dom
+    yarn add @mutablejs/core @mutablejs/dom
 ```
+Keep in mind the repository depends on `@mutablejs/core`.
 
 ## Usage/Examples
 
@@ -99,6 +101,8 @@ root?.append(
 ```
 
 More complex todo-app demo in our [demo repository](https://github.com/mutableJS/demo).
+
+Or start right away with your own project: [Starter-Template repository](https://github.com/mutableJS/template-starter-typescript).
 
 ## Authors
 

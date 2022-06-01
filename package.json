@@ -1,6 +1,6 @@
 {
 	"name": "@mutablejs/dom",
-	"version": "0.2.11",
+	"version": "0.3.0",
 	"description": "Reactive DOM elements, based on mutableJS's state",
 	"keywords": [
 		"mutable DOM",
@@ -35,12 +35,17 @@
 		"url": "https://github.com/mutableJS/dom"
 	},
 	"license": "MIT",
-	"devDependencies": {
-		"@types/node": "^17.0.30",
-		"typescript": "^4.6.4",
-		"vite": "^2.9.6"
+	"engines": {
+		"node": ">=17.0.0"
 	},
-	"dependencies": {
-		"@mutablejs/core": "^0.1.6"
-	}
+	"devDependencies": {
+		"@mutablejs/core": "^0.2.0",
+		"@types/node": "^17.0.38",
+		"typescript": "^4.7.2",
+		"vite": "^2.9.9"
+	},
+	"peerDependencies": {
+		"@mutablejs/core": "^0.2.0"
+	},
+	"dependencies": {}
 }
