@@ -79,7 +79,7 @@ export function mutableElement<Tag extends keyof MutableElements>(
 					const index = currentOffset;
 					const child = element.childNodes[index];
 
-					element.removeChild(child);
+					child instanceof Node && element.removeChild(child);
 				}
 				const insertBefore = element.childNodes[currentOffset];
 

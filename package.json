@@ -1,6 +1,6 @@
 {
 	"name": "@mutablejs/dom",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Reactive DOM elements, based on mutableJS's state",
 	"keywords": [
 		"mutable DOM",
