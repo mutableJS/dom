@@ -14,4 +14,5 @@ export default defineConfig({
 			external: ['@mutablejs/core'],
 		},
 	},
+	server: { port: 3000 },
 });
